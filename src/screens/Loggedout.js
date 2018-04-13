@@ -12,7 +12,7 @@ class LoggedOut extends Component {
         <View style={styles.welcomeWrapper}>
           <Image source={require("../../assets/logo.png")} style={styles.logo} />
           <Text style={styles.welcomeText}>Welcome</Text>
-          <RoundedButton />
+          <RoundedButton text="Continue with Facebook" />
         </View>
       </View>
     );
