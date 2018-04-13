@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 import colors from "../styles/colors";
+import RoundedButton from "../components/buttons/RoundedButton";
 
 class LoggedOut extends Component {
   state = {};
@@ -11,6 +12,7 @@ class LoggedOut extends Component {
         <View style={styles.welcomeWrapper}>
           <Image source={require("../../assets/logo.png")} style={styles.logo} />
           <Text style={styles.welcomeText}>Welcome</Text>
+          <RoundedButton />
         </View>
       </View>
     );
