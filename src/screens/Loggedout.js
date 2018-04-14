@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 
 class LoggedOut extends Component {
-  state = {};
   render() {
     return (
       <View style={styles.wrapper}>
         <View style={styles.welcomeWrapper}>
           <Image source={require("../../assets/logo.png")} style={styles.logo} />
           <Text style={styles.welcomeText}>Welcome</Text>
-          <RoundedButton text="Continue with Facebook" />
+          <RoundedButton
+            text="Continue with Facebook"
+            textColor={colors.green_one}
+            background={colors.white}
+            icon={<Icon name="facebook" size={20} style={styles.facebookButtonIcon} />}
+          />
         </View>
       </View>
     );
@@ -42,7 +47,8 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: "300",
     marginBottom: 40
-  }
+  },
+  facebookButtonIcon: {}
 });
 
 export default LoggedOut;
