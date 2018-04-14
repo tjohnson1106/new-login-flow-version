@@ -6,6 +6,14 @@ import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 
 class LoggedOut extends Component {
+  onFacebookPress() {
+    alert("Facebook button pressed");
+  }
+
+  onCreateAccountPress() {
+    alert("Create Account");
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>
@@ -15,8 +23,14 @@ class LoggedOut extends Component {
           <RoundedButton
             text="Continue with Facebook"
             textColor={colors.green_one}
-            background={colors.white}
+            backgroundColor={colors.white}
             icon={<Icon name="facebook" size={20} style={styles.facebookButtonIcon} />}
+            handleOnPress={this.onFacebookPress}
+          />
+          <RoundedButton
+            text="Create an Account"
+            textColor={colors.white}
+            handleOnPress={this.onCreateAccountPress}
           />
         </View>
       </View>
@@ -48,7 +62,12 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     marginBottom: 40
   },
-  facebookButtonIcon: {}
+  facebookButtonIcon: {
+    color: colors.green_one,
+    position: "relative",
+    left: 20,
+    zIndex: 8
+  }
 });
 
 export default LoggedOut;
