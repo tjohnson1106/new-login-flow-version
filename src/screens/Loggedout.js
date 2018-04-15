@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableHighlight } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import colors from "../styles/colors";
@@ -14,12 +14,16 @@ class LoggedOut extends Component {
     alert("Create Account");
   }
 
+  onMoreOptionsPress() {
+    alert("More Options Button Pressed");
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>
         <View style={styles.welcomeWrapper}>
           <Image source={require("../../assets/logo.png")} style={styles.logo} />
-          <Text style={styles.welcomeText}>Welcome</Text>
+          <Text style={styles.welcomeText}>Bracket Factory App Login</Text>
           <RoundedButton
             text="Continue with Facebook"
             textColor={colors.green_one}
@@ -32,6 +36,12 @@ class LoggedOut extends Component {
             textColor={colors.white}
             handleOnPress={this.onCreateAccountPress}
           />
+          <TouchableHighlight
+            style={styles.moreOptionsButton}
+            onPress={this.onMoreOptionsPress}
+          >
+            <Text>More Options</Text>
+          </TouchableHighlight>
         </View>
       </View>
     );
@@ -67,6 +77,13 @@ const styles = StyleSheet.create({
     position: "relative",
     left: 20,
     zIndex: 8
+  },
+  moreOptionsButton: {
+    marginTop: 15
+  },
+  moreOptionsButtonText: {
+    color: colors.white,
+    fontSize: 16
   }
 });
 
