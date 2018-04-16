@@ -17,11 +17,17 @@ class Login extends Component {
               labelText="EMAIL ADDRESS"
               labelTextSize={14}
               labelColor={colors.white}
+              textColor={colors.white}
+              borderBotttomColor={colors.white}
+              inputType="email"
             />
             <InputField
               labelText="PASSWORD"
               labelTextSize={14}
               labelColor={colors.white}
+              textColor={colors.white}
+              borderBotttomColor={colors.white}
+              inputType="password"
             />
           </ScrollView>
         </View>
