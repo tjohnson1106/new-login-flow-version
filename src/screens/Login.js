@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet, KeyboardAvoidingView } from "react-
 import PropTypes from "prop-types";
 
 import colors from "../styles/colors";
+import InputField from "../components/form/InputField";
 
 class Login extends Component {
   state = {};
@@ -12,6 +13,16 @@ class Login extends Component {
         <View style={styles.scrollViewWrapper}>
           <ScrollView style={styles.scrollView}>
             <Text style={styles.loginHeader}>Log In</Text>
+            <InputField
+              labelText="EMAIL ADDRESS"
+              labelTextSize={14}
+              labelColor={colors.white}
+            />
+            <InputField
+              labelText="PASSWORD"
+              labelTextSize={14}
+              labelColor={colors.white}
+            />
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
