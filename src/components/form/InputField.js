@@ -14,15 +14,15 @@ class InputField extends Component {
       labelColor,
       textColor,
       BorderBottomColor,
-      inputType
+      inputType,
+      customStyle
     } = this.props;
     const fontSize = labelTextSize || 14;
     const color = labelColor || colors.white;
     const inputColor = textColor || colors.white;
     const borderBottom = BorderBottomColor || "transparent";
-    alert(inputType);
     return (
-      <View style={styles.wrapper}>
+      <View style={[customStyle, styles.wrapper]}>
         <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
         <TextInput
           autoCorrect={false}
@@ -30,7 +30,7 @@ class InputField extends Component {
             { color: inputColor, borderBottomColor: borderBottom },
             styles.inputField
           ]}
-          secureTextEntry={inputType === "password" ? true : false}
+          secureTextEntry={inputType === "password"}
         />
       </View>
     );
@@ -43,7 +43,8 @@ InputField.propTypes = {
   labelColor: PropTypes.string,
   textColor: PropTypes.string,
   BorderBottomColor: PropTypes.string,
-  inputType: PropTypes.string.isRequired
+  inputType: PropTypes.string.isRequired,
+  customStyle: PropTypes.object
 };
 
 const styles = StyleSheet.create({
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: "700",
-    marginBottom: 10
+    marginBottom: 20
   },
   inputField: {
     borderBottomWidth: 1,

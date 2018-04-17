@@ -4,8 +4,12 @@ import PropTypes from "prop-types";
 
 import colors from "../styles/colors";
 import InputField from "../components/form/InputField";
+import NextArrowButton from "../components/buttons/NextArrowButton";
 
 class Login extends Component {
+  handleNextButton() {
+    alert("Next Button");
+  }
   state = {};
   render() {
     return (
@@ -20,6 +24,7 @@ class Login extends Component {
               textColor={colors.white}
               borderBotttomColor={colors.white}
               inputType="email"
+              customStyle={{ marginBottom: 30 }}
             />
             <InputField
               labelText="PASSWORD"
@@ -28,8 +33,12 @@ class Login extends Component {
               textColor={colors.white}
               borderBotttomColor={colors.white}
               inputType="password"
+              customStyle={{ marginBottom: 30 }}
             />
           </ScrollView>
+        </View>
+        <View style={styles.nextButton}>
+          <NextArrowButton handleNextButton={this.handleNextButton} />
         </View>
       </KeyboardAvoidingView>
     );
@@ -56,7 +65,12 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 34,
     fontWeight: "300",
-    marginBottom: 30
+    marginBottom: 40
+  },
+  nextButton: {
+    alignItems: "flex-end",
+    right: 20,
+    bottom: 10
   }
 });
 
