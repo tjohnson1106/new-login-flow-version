@@ -13,14 +13,14 @@ class InputField extends Component {
       labelTextSize,
       labelColor,
       textColor,
-      BorderBottomColor,
+      borderBottomColor,
       inputType,
       customStyle
     } = this.props;
     const fontSize = labelTextSize || 14;
     const color = labelColor || colors.white;
     const inputColor = textColor || colors.white;
-    const borderBottom = BorderBottomColor || "transparent";
+    const borderBottom = borderBottomColor || "transparent";
     return (
       <View style={[customStyle, styles.wrapper]}>
         <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
@@ -42,7 +42,7 @@ InputField.propTypes = {
   labelTextSize: PropTypes.number,
   labelColor: PropTypes.string,
   textColor: PropTypes.string,
-  BorderBottomColor: PropTypes.string,
+  borderBottomColor: PropTypes.string,
   inputType: PropTypes.string.isRequired,
   customStyle: PropTypes.object
 };
