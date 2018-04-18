@@ -8,6 +8,12 @@ import NextArrowButton from "../components/buttons/NextArrowButton";
 import Notification from "../components/Notification";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      formValid: false
+    };
+  }
   handleNextButton() {
     alert("Next Button");
   }
@@ -18,6 +24,8 @@ class Login extends Component {
 
   state = {};
   render() {
+    const { formValid } = this.props;
+    const showNotification = formValid ? false : true;
     return (
       <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
         <View style={styles.scrollViewWrapper}>
@@ -47,7 +55,7 @@ class Login extends Component {
           </View>
           <View>
             <Notification
-              showNotification={true}
+              showNotification={showNotification}
               handleCloseNotification={this.handleCloseNotification}
               type="Error"
               firstLine="Those credentials are incorrect.  "
