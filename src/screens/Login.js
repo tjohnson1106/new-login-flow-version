@@ -11,6 +11,11 @@ class Login extends Component {
   handleNextButton() {
     alert("Next Button");
   }
+
+  handleCloseNotification() {
+    alert("Closing Notification");
+  }
+
   state = {};
   render() {
     return (
@@ -41,7 +46,13 @@ class Login extends Component {
             <NextArrowButton handleNextButton={this.handleNextButton} />
           </View>
           <View>
-            <Notification />
+            <Notification
+              showNotification={true}
+              handleCloseNotification={this.handleCloseNotification}
+              type="Error"
+              firstLine="Those credentials are incorrect.  "
+              secondLine="Please try again"
+            />
           </View>
         </View>
       </KeyboardAvoidingView>
