@@ -11,23 +11,74 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formValid: false
+      formValid: false,
+      validEmail: false,
+      emailAddress: "",
+      validPassword: false
     };
+    this.handleCloseNotification = this.handleCloseNotification.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleNextButton = this.handleNextButton.bind(this);
   }
   handleNextButton() {
-    alert("Next Button");
+    if (this.state.emailAddress === "hello@bf.io") {
+      this.setState({
+        formValid: true
+      });
+    } else {
+      this.setState({
+        formValid: false
+      });
+    }
   }
 
   handleCloseNotification() {
-    alert("Closing Notification");
+    this.setState({
+      formValid: true
+    });
   }
 
-  state = {};
+  handleEmailChange(email) {
+    const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    this.setState({
+      emailAddress: email
+    });
+
+    if (!this.state.validEmail) {
+      if (emailCheckRegex.test(email)) {
+        this.setState({
+          validEmail: true
+        });
+      } else {
+        if (!emailCheckRegex.test(email)) {
+          this.setState({
+            validEmail: false
+          });
+        }
+      }
+    }
+  }
+
+  handlePasswordChange() {
+    if (this.state.validPassword) {
+      if (password.length > 4) {
+        this.setState({
+          validPassword: true
+        });
+      }
+    }
+  }
+
   render() {
-    const { formValid } = this.props;
+    const { formValid } = this.state;
     const showNotification = formValid ? false : true;
+    const background = formValid ? colors.green_one : colors.darkOrange;
+    const notificationMarginTop = showNotification ? 10 : 0;
     return (
-      <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
+      <KeyboardAvoidingView
+        style={[{ backgroundColor: background }, styles.wrapper]}
+        behavior="padding"
+      >
         <View style={styles.scrollViewWrapper}>
           <ScrollView style={styles.scrollView}>
             <Text style={styles.loginHeader}>Log In</Text>
@@ -39,6 +90,7 @@ class Login extends Component {
               borderBotttomColor={colors.white}
               inputType="email"
               customStyle={{ marginBottom: 30 }}
+              onTextChange={this.handleEmailChange}
             />
             <InputField
               labelText="PASSWORD"
@@ -53,7 +105,9 @@ class Login extends Component {
           <View style={styles.nextButton}>
             <NextArrowButton handleNextButton={this.handleNextButton} />
           </View>
-          <View>
+          <View
+            style={[styles.notificationWrapper, { marginTop: notificationMarginTop }]}
+          >
             <Notification
               showNotification={showNotification}
               handleCloseNotification={this.handleCloseNotification}
@@ -71,8 +125,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     display: "flex",
-    flex: 1,
-    backgroundColor: colors.green_one
+    flex: 1
   },
   scrollViewWrapper: {
     marginTop: 70,
@@ -94,6 +147,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     right: 20,
     bottom: 10
+  },
+  notificationWrapper: {
+    position: "absolute",
+    bottom: 0,
+    zIndex: 9
   }
 });
 
