@@ -6,7 +6,19 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../../styles/colors";
 
 class InputField extends Component {
-  state = {};
+  //needs to be changed to property initializer
+  constructor(props) {
+    super(props);
+    this.state = {
+      secureInput:
+        props.inputType === "text" || props.inputType === "email" ? false : true
+    };
+  }
+
+  toggleShowPassword() {
+    this.setState({ secureInput: !this.state.secureInput });
+  }
+
   render() {
     const {
       labelText,
