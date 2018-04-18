@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import colors from "../styles/colors";
 import InputField from "../components/form/InputField";
 import NextArrowButton from "../components/buttons/NextArrowButton";
+import Notification from "../components/Notification";
 
 class Login extends Component {
   handleNextButton() {
@@ -38,6 +39,9 @@ class Login extends Component {
           </ScrollView>
           <View style={styles.nextButton}>
             <NextArrowButton handleNextButton={this.handleNextButton} />
+          </View>
+          <View>
+            <Notification />
           </View>
         </View>
       </KeyboardAvoidingView>
