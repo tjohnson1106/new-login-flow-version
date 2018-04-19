@@ -15,7 +15,8 @@ class Login extends Component {
       formValid: true,
       validEmail: true,
       emailAddress: "",
-      validPassword: false
+      validPassword: false,
+      loadingVisible: false
     };
     this.handleCloseNotification = this.handleCloseNotification.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -24,6 +25,9 @@ class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
   handleNextButton() {
+    this.setState({
+      loadingVisible: true
+    });
     if (this.state.emailAddress === "hello@bf.io" && this.state.validPassword) {
       alert("success");
       this.setState({
@@ -86,7 +90,7 @@ class Login extends Component {
   }
 
   render() {
-    const { formValid } = this.state;
+    const { formValid, loadingVisible } = this.state;
     const showNotification = formValid ? false : true;
     const background = formValid ? colors.green_one : colors.darkOrange;
     const notificationMarginTop = showNotification ? 10 : 0;
@@ -137,7 +141,7 @@ class Login extends Component {
             />
           </View>
         </View>
-        <Loader modalVisible={true} animationType="fade" />
+        <Loader modalVisible={loadingVisible} animationType="fade" />
       </KeyboardAvoidingView>
     );
   }
@@ -171,8 +175,7 @@ const styles = StyleSheet.create({
   },
   notificationWrapper: {
     position: "absolute",
-    bottom: 0,
-    zIndex: 999
+    bottom: 0
   }
 });
 
