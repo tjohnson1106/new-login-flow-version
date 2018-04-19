@@ -6,13 +6,14 @@ import colors from "../styles/colors";
 import InputField from "../components/form/InputField";
 import NextArrowButton from "../components/buttons/NextArrowButton";
 import Notification from "../components/Notification";
+import Loader from "../components/Loader";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       formValid: true,
-      validEmail: false,
+      validEmail: true,
       emailAddress: "",
       validPassword: false
     };
@@ -136,6 +137,7 @@ class Login extends Component {
             />
           </View>
         </View>
+        <Loader modalVisible={true} animationType="fade" />
       </KeyboardAvoidingView>
     );
   }
