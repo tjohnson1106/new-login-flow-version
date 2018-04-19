@@ -11,7 +11,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formValid: false,
+      formValid: true,
       validEmail: false,
       emailAddress: "",
       validPassword: false
@@ -19,9 +19,12 @@ class Login extends Component {
     this.handleCloseNotification = this.handleCloseNotification.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleNextButton = this.handleNextButton.bind(this);
+    this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
   handleNextButton() {
-    if (this.state.emailAddress === "hello@bf.io") {
+    if (this.state.emailAddress === "hello@bf.io" && this.state.validPassword) {
+      alert("success");
       this.setState({
         formValid: true
       });
@@ -66,7 +69,19 @@ class Login extends Component {
           validPassword: true
         });
       }
+    } else if (password <= 4) {
+      this.setState({
+        validPassword: false
+      });
     }
+  }
+
+  toggleNextButtonState() {
+    const { validEmail, validPassword } = this.state;
+    if (validEmail && validPassword) {
+      return false;
+    }
+    return true;
   }
 
   render() {
@@ -90,7 +105,7 @@ class Login extends Component {
               borderBotttomColor={colors.white}
               inputType="email"
               customStyle={{ marginBottom: 30 }}
-              onTextChange={this.handleEmailChange}
+              onChangeText={this.handleEmailChange}
             />
             <InputField
               labelText="PASSWORD"
@@ -100,10 +115,14 @@ class Login extends Component {
               borderBotttomColor={colors.white}
               inputType="password"
               customStyle={{ marginBottom: 30 }}
+              onCh
             />
           </ScrollView>
           <View style={styles.nextButton}>
-            <NextArrowButton handleNextButton={this.handleNextButton} />
+            <NextArrowButton
+              handleNextButton={this.handleNextButton}
+              disabled={this.toggleNextButtonState()}
+            />
           </View>
           <View
             style={[styles.notificationWrapper, { marginTop: notificationMarginTop }]}
@@ -151,7 +170,7 @@ const styles = StyleSheet.create({
   notificationWrapper: {
     position: "absolute",
     bottom: 0,
-    zIndex: 9
+    zIndex: 999
   }
 });
 
