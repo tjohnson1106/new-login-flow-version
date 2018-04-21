@@ -1,22 +1,20 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Modal, Image } from "react-native";
+import { View, StyleSheet, Modal, Image } from "react-native";
 import PropTypes from "prop-types";
 
 import colors from "../styles/colors";
 
 class Loader extends Component {
   render() {
-    const { animationType, visible, modalVisible } = this.props;
+    const { animationType, modalVisible } = this.props;
     return (
-      <Modal animationType={animationType} transparent={true} visible={visible}>
+      <Modal animationType={animationType} transparent={true} visible={modalVisible}>
         <View style={styles.wrapper}>
-          <View>
-            <View style={styles.loaderContainer}>
-              <Image
-                style={styles.loaderImage}
-                source={require("../../assets/loading.gif")}
-              />
-            </View>
+          <View style={styles.loaderContainer}>
+            <Image
+              style={styles.loaderImage}
+              source={require("../../assets/loading.gif")}
+            />
           </View>
         </View>
       </Modal>
