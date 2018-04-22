@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     backgroundColor: colors.white,
+    borderRadius: 15,
+    position: "absolute",
     left: "50%",
     top: " 50%",
     marginLeft: -45,

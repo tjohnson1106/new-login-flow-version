@@ -13,7 +13,7 @@ class Login extends Component {
     super(props);
     this.state = {
       formValid: true,
-      validEmail: true,
+      validEmail: false,
       emailAddress: "",
       validPassword: false,
       loadingVisible: false
@@ -28,16 +28,20 @@ class Login extends Component {
     this.setState({
       loadingVisible: true
     });
-    if (this.state.emailAddress === "hello@bf.io" && this.state.validPassword) {
-      alert("success");
-      this.setState({
-        formValid: true
-      });
-    } else {
-      this.setState({
-        formValid: false
-      });
-    }
+    setTimeout(() => {
+      if (this.state.emailAddress === "hello@bf.io" && this.state.validPassword) {
+        alert("success");
+        this.setState({
+          formValid: true,
+          loadingVisible: false
+        });
+      } else {
+        this.setState({
+          formValid: false,
+          loadingVisible: false
+        });
+      }
+    }, 2000);
   }
 
   handleCloseNotification() {
@@ -120,7 +124,7 @@ class Login extends Component {
               borderBotttomColor={colors.white}
               inputType="password"
               customStyle={{ marginBottom: 30 }}
-              onCh
+              onChangeText={this.handlePasswordChange}
             />
           </ScrollView>
           <View style={styles.nextButton}>

@@ -36,6 +36,7 @@ class InputField extends Component {
     const color = labelColor || colors.white;
     const inputColor = textColor || colors.white;
     const borderBottom = borderBottomColor || "transparent";
+    const keyboardType = inputType === "email" ? "email-address" : "default";
     return (
       <View style={[customStyle, styles.wrapper]}>
         <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
